@@ -1,6 +1,7 @@
 package com.ngs.list
 
 import scala.annotation.tailrec
+import scala.collection.immutable.Nil
 
 sealed abstract class NList[+T] {
   // basic API methods
@@ -132,21 +133,10 @@ case class ::[B](head: B, tail: NList[B]) extends NList[B] {
 object Test {
   def main(args: Array[String]): Unit = {
     val test1 = "Hello" :: "Functional" :: "Scala" :: "World" :: Empty
-    val test2 = "Hello#" :: "Functional#" :: "Scala#" :: "World#" :: Empty
-    test2.contains(new Integer(2))
+    val test2 = "Hello" :: "Functional" :: "Scala" :: "World" :: Nil
 
-    val result = for (x <- test1) yield x + "#"
-    result foreach println
-
-    val result2 = for (
-        x <- test1;
-        y <- test2;
-        if (y.length > 7)
-      ) yield (x, y)
-
-    result2 foreach println
-
-    println(test1.find(_ == "Hello").toLowerCase())
+    Console println (test1.toString)
+    Console println (test2.toString)
   }
 
 }
